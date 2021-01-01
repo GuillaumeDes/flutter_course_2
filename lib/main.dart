@@ -18,6 +18,33 @@ class _QuoteListState extends State<QuoteList> {
       Quote(author: 'author 3', text: 'text 3'),
   ];
 
+  Widget quoteTemplate(quote){
+    return Card(
+      margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0,0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          children : <Widget>[
+            Text(
+              quote.text,
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.grey[600]
+              )
+            ),
+            SizedBox(height:6.0),
+            Text(
+                quote.author,
+                style: TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.grey[600]
+                )
+            ),
+          ]
+        ),
+      )
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +54,10 @@ class _QuoteListState extends State<QuoteList> {
         title: Text('Quotes'),
         centerTitle: true,
         backgroundColor: Colors.redAccent,
-
       ),
       body:
         Column(
-          children: quotes.map((quote) => Text('${quote.text} - ${quote.author}')).toList(),
+          children: quotes.map((quote) => quoteTemplate(quote)).toList(),
         )
     );
   }
